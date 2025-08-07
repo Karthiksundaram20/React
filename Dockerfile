@@ -1,22 +1,39 @@
-# Stage 1 Build the React application
-FROM nodealpine as build-stage
 
-WORKDIR app
-
-COPY package.json .
-COPY package-lock.json .
-
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+# Use the latest LTS version of Node.js
+FROM node:18-alpine
+ 
+# Set the working directory inside the container
+WORKDIR /app
+ 
+# Copy package.json and package-lock.json
+COPY package*.json ./
+ 
+# Install dependencies
 RUN npm install
-
+ 
+# Copy the rest of your application files
 COPY . .
-
-RUN npm run build
-
-# Stage 2 Serve the built application with Nginx
-FROM nginxalpine as production-stage
-
-COPY --from=build-stage appbuild usrsharenginxhtml
-
-EXPOSE 80
-
-CMD [nginx, -g, daemon off;]
+ 
+# Expose the port your app runs on
+EXPOSE 3000
+ 
+# Define the command to run your app
+CMD ["npm", "start"]

@@ -1,22 +1,4 @@
 
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
 # Use the latest LTS version of Node.js
 FROM node:18-alpine
  
@@ -37,3 +19,4 @@ EXPOSE 3000
  
 # Define the command to run your app
 CMD ["npm", "start"]
+
